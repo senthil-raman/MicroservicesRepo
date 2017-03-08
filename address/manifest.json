@@ -1,0 +1,13 @@
+{
+"runtime": {
+"majorVersion": "1"
+},
+"command": "java -cp target/classes:target/dependency/* com.kumuluz.ee.EeApplication",
+"release":{
+"build":"2016-01",
+"commit":"commitString",
+"version":"v1.0"
+},
+"notes": "Address Validation Microservices"
+
+}
