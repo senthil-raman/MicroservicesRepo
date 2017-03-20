@@ -18,6 +18,6 @@ RUN mvn clean package -Pdeploy
 
 ENV JAVA_ENV=PRODUCTION
 
-EXPOSE 8083
+EXPOSE 8080
 
 CMD ["java", "-server", "-cp", "target/classes:target/dependency/*", "com.kumuluz.ee.EeApplication"]
