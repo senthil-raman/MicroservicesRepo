@@ -7,8 +7,18 @@ Address Validation Microservices is a simple API allowing consumers to validate 
 
 ## Questions Collection [/address/addressval]
 
-### List All Questions [GET]
+### List All Requests [GET]
++ Request (application/json)
 
+    + Attributes
+        + name (string, required) - Customer Name
+        + email (string, required) - Customer Email
+        + phone (string, required) - Customer Phone
+        + address (string, required) - Customer Address
+        + city (string, required) - City
+        + zipcode (string, required) - ZIPCODE of city
+
+   
 + Response 200 (application/json)
 
 [
@@ -20,51 +30,63 @@ Address Validation Microservices is a simple API allowing consumers to validate 
                "city": Chennai",
               "zipcode": "609001"
             }
+            
+ + Response 201 (application/json)
+
+        {
+            "notification": "You have successfully created, pending their confirmation(s).",
+            "success": true
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "errors": "You don't have the appropriate rights to create request",
+            "success": false
+        }
+
 ]
 
 
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+### Create a New  Request [POST]
 
 + Request (application/json)
 
+    + Attributes
+        + name (string, required) - Customer Name
+        + email (string, required) - Customer Email
+        + phone (string, required) - Customer Phone
+        + address (string, required) - Customer Address
+        + city (string, required) - City
+        + zipcode (string, required) - ZIPCODE of city
+
+   
++ Response 200 (application/json)
+
+[
+ {
+              "name": "Neo Joy",
+              "email": "sen@rediff.com",
+               "phone": +44444444",
+              "address": "Greams Road",
+               "city": Chennai",
+              "zipcode": "609001"
+            }
+            
+ + Response 201 (application/json)
+
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "notification": "You have successfully created, pending their confirmation(s).",
+            "success": true
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "errors": "You don't have the appropriate rights to create request",
+            "success": false
         }
 
-+ Response 201 (application/json)
+]
 
-    + Headers
-
-            Location: /questions/2
-
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
             }
