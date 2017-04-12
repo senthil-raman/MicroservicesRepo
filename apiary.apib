@@ -5,7 +5,7 @@ HOST: http://10.180.217.69:8080
 
 Address Validation Microservices is a simple API allowing consumers to validate their address format.
 
-##POST /address/addressval/{name}{email}{phone}{address}{city}{zipcode}
+##POST /address/addressval/{name}/{email}/{phone}/{address}/{city}/{zipcode}
 + Parameters
     + name: Senthil (string, required)
     + email: sen@gmail.com (string, required)
@@ -13,7 +13,7 @@ Address Validation Microservices is a simple API allowing consumers to validate 
     + address: Raymond Street (string, required)
     + city: Chennai (string, required)
     + zipcode: 600073 (string, required)
-    
+##GET [/]   
 ### List All Requests [GET]
 + Request (application/json)
 
