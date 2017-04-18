@@ -1,11 +1,11 @@
 FORMAT: 1A
-HOST: http://10.180.217.69:8080
+HOST: http://10.180.217.154:8080
 
 # AddressValMicroservices
 
 Address Validation Microservices is a simple API allowing consumers to validate their address format.
 
-##POST /address/addressval/{name}/{email}/{phone}/{address}/{city}/{zipcode}
+##POST address/addressval/{name}/{email}/{phone}/{address}/{city}/{zipcode}
 + Parameters
     + name: Senthil (string, required)
     + email: sen@gmail.com (string, required)
@@ -13,19 +13,8 @@ Address Validation Microservices is a simple API allowing consumers to validate 
     + address: Raymond Street (string, required)
     + city: Chennai (string, required)
     + zipcode: 600073 (string, required)
-##GET [/]   
-### List All Requests [GET]
-+ Request (application/json)
+ 
 
-    + Attributes
-        + name (string, required) - Customer Name
-        + email (string, required) - Customer Email
-        + phone (string, required) - Customer Phone
-        + address (string, required) - Customer Address
-        + city (string, required) - City
-        + zipcode (string, required) - ZIPCODE of city
-
-   
 + Response 200 (application/json)
 
 [
@@ -50,46 +39,5 @@ Address Validation Microservices is a simple API allowing consumers to validate 
 
 ]
 
-
-### Create a New  Request [POST]
-
-+ Request (application/json)
-
-    + Attributes
-        + name (string, required) - Customer Name
-        + email (string, required) - Customer Email
-        + phone (string, required) - Customer Phone
-        + address (string, required) - Customer Address
-        + city (string, required) - City
-        + zipcode (string, required) - ZIPCODE of city
-
-   
-+ Response 200 (application/json)
-
-[
- {
-              "name": "Neo Joy",
-              "email": "sen@rediff.com",
-               "phone": +44444444",
-              "address": "Greams Road",
-               "city": Chennai",
-              "zipcode": "609001"
-            }
-            
- + Response 201 (application/json)
-
-        {
-            "notification": "You have successfully created, pending their confirmation(s).",
-            "success": true
-        }
-        
-+ Response 400 (application/json)
-
-        {
-            "errors": "You don't have the appropriate rights to create request",
-            "success": false
-        }
-
-]
 
             }
