@@ -1,11 +1,21 @@
 FORMAT: 1A
-HOST: http://10.180.217.154:8080
+HOST:  http://10.180.217.154:8080
 
 # AddressValMicroservices
 
-Address Validation Microservices is a simple API allowing consumers to validate their address format.
+Address Validation Microservices is a simple API allowing consumers to validate their address format
 
-##POST address/addressval/{name}/{email}/{phone}/{address}/{city}/{zipcode}
+# AddressValMicroservices API Root [/]
+This resource does not have any attributes. Instead it offers the initial API affordance
+
++ Response 200 (text/plain)
+
+        Success!
+##Group Address
+
+This section groups Microservice Address Validation.
+
+##POST /address/addressval/{name}/{email}/{phone}/{address}/{city}/{zipcode}
 + Parameters
     + name: Senthil (string, required)
     + email: sen@gmail.com (string, required)
