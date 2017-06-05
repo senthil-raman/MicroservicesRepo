@@ -1,0 +1,17 @@
+sudo: false
+language: php
+cache:
+  directories:
+  - "$HOME/.composer/cache"
+php:
+- 5.6
+before_install:
+- npm install -g dredd
+- composer install
+before_script:
+- dredd
+script:
+- vendor/bin/phpunit test/
+env:
+  global:
+  - secure: DV0u0VlskAZeKt0Ueaqo+QBcYDIkxEiVxvmxucAoyGmhqG5lvZXfOeORZUaEfpOmkFmefrTdmBVQBjDn/8TZwnn13hRAbBooAskdODtV5e5StLzSD1x9p1sLlyZsp8WP2Rf71OVg06BTIoSklACA03IXxvi6pDffSYgzFhLNyJQRwKSQeI0xiEUUO7V+ZJoF1opJF+7TSJceCpaTn+G564vZUUBi+AKScIETTuHP6tU1KkjneMYnOEMkLR7Aqpw11OgfvRzJT59B9XVD/yBDNt5TmjN+3kB62Uf28I4DniCk7C3FJYXICBVLYnQP9Uh5c2WPoPQ5tZZDMT5QCvkjluusrrA4om39cyWQQlK/+29+weKJIN8pBePrkZotp0So8pRvQESs6V+62OSIoBYT6cCCc6IQ0z/gDxo9SVu/KQPz/o5M4NyPJ2sQoSA9LC9R3nJvDHiNkv1PjrNIHlOgYD/ZYySnvUKP4LL1gpI8jvKyiZ72fKYj67sH/ZVxyVHkH+DSeUbQP5F7yxC/heCtBFlWtDwTkywSL6jTHM6YXlm9CjF7Rp2QNUsyBXaSVNuK0L3O38YAUMCIQQ7P0a8JhW6Czz0h0kgGy/P79l8DTHIbYogzvM0J3tTqT9fHvP+3pMUnlc8yOkK73ulXcBsZTNViixc0o6bkI8+H+Hiclxc=
