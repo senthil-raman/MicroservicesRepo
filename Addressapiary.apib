@@ -1,53 +1,120 @@
 FORMAT: 1A
-HOST:  http://10.180.217.154:8080
-
 # AddressValMicroservices
 
-Address Validation Microservices is a simple API allowing consumers to validate their address format
+Addressvalidation Microservice to add,delete,update records.
 
-# AddressValMicroservices API Root [/]
-This resource does not have any attributes. Instead it offers the initial API affordance
+# Description Of Usual Server Responses:
 
-+ Response 200 (text/plain)
+- 200 `OK` - the request was successful (some API calls may return 201 instead).
+- 201 `Created` - the request was successful and a resource was created.
+- 204 `No Content` - the request was successful but there is no representation to return (i.e. the response is empty).
+- 400 `Bad Request` - the request could not be understood or was missing required parameters.
+- 401 `Unauthorized` - authentication failed or user doesn't have permissions for requested operation.
+- 403 `Forbidden` - access denied.
+- 404 `Not Found` - resource was not found.
+- 405 `Method Not Allowed` - requested method is not supported for resource.
 
-        Success!
-##Group Address
 
-This section groups Microservice Address Validation.
+**address attributes:**
 
-##POST /address/addressval/{name}/{email}/{phone}/{address}/{city}/{zipcode}
+- id `(Number)` : unique identifier. 
+- name `(String)` : First Name.
+- email `(String)` : Last Name.
+- phone `(String)` : email id of the user.
+- address `(String)` : First Name.
+- city `(String)` : Last Name.
+- zipcode `(String)` : email id of the user.
+
+---
+## address Collection [/address/addressval({name},{email},{phone},{address},{city},{zipcode})]
+
+### List all address [GET]
+
+Retrieve paginated list of users.
+
 + Parameters
     + name: Senthil (string, required)
-    + email: sen@gmail.com (string, required)
+    + email: John@gmail.com (string, required)
     + phone: 9999999 (string, required)
     + address: Raymond Street (string, required)
+    + zipcode: Zipcode (string, required)
     + city: Chennai (string, required)
-    + zipcode: 600073 (string, required)
+    
  
 
 + Response 200 (application/json)
 
-[
- {
-              "notification": "You have successfully created, pending their confirmation(s).",
-            "success": true
+        [
+            {
+                "name": "RAJA",
+                "email": "pandurang@email.com",
+                "phone": "888888888"
+                "address": "RAJA",
+                "zipcode": "609001",
+                "city": "Chennai"
+            }
+        ]
+
++ Response 401 (application/json)
+
+        {
+            "error": "error.unauthorized"
+        }
+
+
+## User [/users/{id}]
+A single User object with all its details
+
++ Parameters
+    + id (required, Number, `1`) ... Numeric `id` of the User to perform action with.
+
+### Retrieve a address [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            {
+                "id": 1,
+                 "name": "RAJA",
+                "email": "pandurang@email.com",
+                "phone": "888888888"
+                "address": "RAJA",
+                "zipcode": "609001",
+                "city": "Chennai"
             }
             
- + Response 201 (application/json)
++ Response 401 (application/json)
 
         {
-            "notification": "You have successfully created, pending their confirmation(s).",
-            "success": true
+            "error": "error.unauthorized"
         }
-        
-+ Response 400 (application/json)
+
+### Update a address [POST]
+Update address details
++ Request (application/json)
 
         {
-            "errors": "You don't have the appropriate rights to create request",
-            "success": false
+            "id": 1,
+            "fname": "Jayam",
+            "lname": "Senthamarai",
+            "email": "jayam@email.com"
         }
 
-]
++ Response 200 (application/json)
 
+        {
+            "id": 1,
+            "fname": "Jayam",
+            "lname": "Senthamarai",
+            "email": "jayam@email.com"
+        }
 
-            }
++ Response 401 (application/json)
+
+        {
+            "error": "error.unauthorized"
+        }
