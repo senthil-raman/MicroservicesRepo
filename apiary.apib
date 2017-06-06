@@ -97,22 +97,27 @@ A single User object with all its details
 Update address details
 + Request (application/json)
 
-        {
-            "id": 1,
-            "fname": "Jayam",
-            "lname": "Senthamarai",
-            "email": "jayam@email.com"
-        }
+       {
+                "id": 2,
+                 "name": "JOHN",
+                "email": "john@email.com",
+                "phone": "888888888"
+                "address": "Cathedral road",
+                "zipcode": "600001",
+                "city": "Chennai"
+            }
 
 + Response 200 (application/json)
 
         {
-            "id": 1,
-            "fname": "Jayam",
-            "lname": "Senthamarai",
-            "email": "jayam@email.com"
-        }
-
+                "id": 2,
+                 "name": "JOHN",
+                "email": "john@email.com",
+                "phone": "888888888"
+                "address": "Cathedral road",
+                "zipcode": "600001",
+                "city": "Chennai"
+            }
 + Response 401 (application/json)
 
         {
