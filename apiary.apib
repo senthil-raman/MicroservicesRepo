@@ -18,12 +18,15 @@ Addressvalidation Microservice to add,delete,update records.
 **address attributes:**
 
 - id `(Number)` : unique identifier. 
-- fname `(String)` : First Name.
-- lname `(String)` : Last Name.
-- email `(String)` : email id of the user.
+- name `(String)` : First Name.
+- email `(String)` : Last Name.
+- phone `(String)` : email id of the user.
+- address `(String)` : First Name.
+- city `(String)` : Last Name.
+- zipcode `(String)` : email id of the user.
 
 ---
-## address Collection [/address/addressval({name},{email},{phone},{address},{city})]
+## address Collection [/address/addressval({name},{email},{phone},{address},{city},{zipcode})]
 
 ### List all address [GET]
 
@@ -34,6 +37,7 @@ Retrieve paginated list of users.
     + email: John@gmail.com (string, required)
     + phone: 9999999 (string, required)
     + address: Raymond Street (string, required)
+    + zipcode: Zipcode (string, required)
     + city: Chennai (string, required)
     
  
@@ -42,16 +46,12 @@ Retrieve paginated list of users.
 
         [
             {
-                "id": 1,
-                "fname": "RAJA",
-                "lname": "RAM",
-                "email": "pandurang@email.com"
-            },
-            {
-                "id": 2,
-                "fname": "SHIV",
-                "lname": "YADAV",
-                "email": "SHIV@email.com"
+                "name": "RAJA",
+                "email": "pandurang@email.com",
+                "phone": "888888888"
+                "address": "RAJA",
+                "zipcode": "609001",
+                "city": "Chennai"
             }
         ]
 
@@ -79,9 +79,12 @@ A single User object with all its details
 
             {
                 "id": 1,
-                "fname": "Jayam",
-                "lname": "Senthamarai",
-                "email": "Jayam@email.com"
+                 "name": "RAJA",
+                "email": "pandurang@email.com",
+                "phone": "888888888"
+                "address": "RAJA",
+                "zipcode": "609001",
+                "city": "Chennai"
             }
             
 + Response 401 (application/json)
