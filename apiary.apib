@@ -1,180 +1,120 @@
 FORMAT: 1A
+# AddressValMicroservices
 
-# PoSobota
+Addressvalidation Microservice to add,delete,update records.
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+# Description Of Usual Server Responses:
 
-# Polls API Root [/]
+- 200 `OK` - the request was successful (some API calls may return 201 instead).
+- 201 `Created` - the request was successful and a resource was created.
+- 204 `No Content` - the request was successful but there is no representation to return (i.e. the response is empty).
+- 400 `Bad Request` - the request could not be understood or was missing required parameters.
+- 401 `Unauthorized` - authentication failed or user doesn't have permissions for requested operation.
+- 403 `Forbidden` - access denied.
+- 404 `Not Found` - resource was not found.
+- 405 `Method Not Allowed` - requested method is not supported for resource.
 
-This resource does not have any attributes. Instead it offers the initial
-API affordances in the form of the links in the JSON body.
 
-It is recommend to follow the “url” link values,
-[Link](https://tools.ietf.org/html/rfc5988) or Location headers where
-applicable to retrieve resources. Instead of constructing your own URLs,
-to keep your client decoupled from implementation details.
+**address attributes:**
 
-## Retrieve the Entry Point [GET]
+- id `(Number)` : unique identifier. 
+- name `(String)` : First Name.
+- email `(String)` : Last Name.
+- phone `(String)` : email id of the user.
+- address `(String)` : First Name.
+- city `(String)` : Last Name.
+- zipcode `(String)` : email id of the user.
+
+---
+## address Collection [/address/addressval({name},{email},{phone},{address},{city},{zipcode})]
+
+### List all address [GET]
+
+Retrieve paginated list of users.
+
++ Parameters
+    + name: Senthil (string, required)
+    + email: John@gmail.com (string, required)
+    + phone: 9999999 (string, required)
+    + address: Raymond Street (string, required)
+    + zipcode: Zipcode (string, required)
+    + city: Chennai (string, required)
+    
+ 
 
 + Response 200 (application/json)
 
+        [
+            {
+                "name": "RAJA",
+                "email": "pandurang@email.com",
+                "phone": "888888888"
+                "address": "RAJA",
+                "zipcode": "609001",
+                "city": "Chennai"
+            }
+        ]
+
++ Response 401 (application/json)
+
         {
-            "questions_url": "/questions"
+            "error": "error.unauthorized"
         }
 
-## Group Question
 
-Resources related to questions in the API.
-
-## Question [/questions/{question_id}]
-
-A Question object has the following attributes:
-
-+ question
-+ published_at - An ISO8601 date when the question was published.
-+ url
-+ choices - An array of Choice objects.
+## User [/users/{id}]
+A single User object with all its details
 
 + Parameters
-    + question_id: 1 (required, number) - ID of the Question in form of an integer
+    + id (required, Number, `1`) ... Numeric `id` of the User to perform action with.
 
-### View a Questions Detail [GET]
-
+### Retrieve a address [GET]
 + Response 200 (application/json)
 
-        {
-            "question": "Favourite php framework?",
-            "published_at": "2014-11-11T08:40:51.620Z",
-            "url": "/questions/1",
-            "choices": [
-                {
-                    "choice": "Nette",
-                    "url": "/questions/1/choices/1",
-                    "votes": 2048
-                }, {
-                    "choice": "Symfony 2",
-                    "url": "/questions/1/choices/2",
-                    "votes": 1024
-                }, {
-                    "choice": "Zend Framework",
-                    "url": "/questions/1/choices/3",
-                    "votes": 512
-                }, {
-                    "choice": "CakePHP",
-                    "url": "/questions/1/choices/4",
-                    "votes": 256
-                }
-            ]
-        }
+    + Header
 
-## Choice [/questions/{question_id}/choices/{choice_id}]
-
-+ Parameters
-    + question_id: 1 (required, number) - ID of the Question in form of an integer
-    + choice_id: 1 (required, number) - ID of the Choice in form of an integer
-
-### Vote on a Choice [POST]
-
-This action allows you to vote on a question's choice.
-
-+ Response 201
-
-    + Headers
-
-            Location: /questions/1
-
-## Questions Collection [/questions{?page}]
-
-+ Parameters
-    + page: 1 (optional, number) - The page of questions to return
-
-### List All Questions [GET]
-
-+ Response 200 (application/json)
-
-    + Headers
-
-            Link: </questions?page=2>; rel="next"
-
-    + Body
-
-            [
-                {
-                    "question": "Favourite php framework?",
-                    "published_at": "2014-11-11T08:40:51.620Z",
-                    "url": "/questions/1",
-                    "choices": [
-                        {
-                            "choice": "Nette",
-                            "url": "/questions/1/choices/1",
-                            "votes": 2048
-                        }, {
-                            "choice": "Symfony 2",
-                            "url": "/questions/1/choices/2",
-                            "votes": 1024
-                        }, {
-                            "choice": "Zend Framework",
-                            "url": "/questions/1/choices/3",
-                            "votes": 512
-                        }, {
-                            "choice": "CakePHP",
-                            "url": "/questions/1/choices/4",
-                            "votes": 256
-                        }
-                    ]
-                }
-            ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
-+ question (string) - The question
-+ choices (array[string]) - A collection of choices.
-
-+ Request (application/json)
-
-        {
-            "question": "Favourite php framework?",
-            "choices": [
-                "Nette",
-                "Symfony 2",
-                "Zend Framework",
-                "CakePHP"
-            ]
-        }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /questions/2
+            X-My-Header: The Value
 
     + Body
 
             {
-                "question": "Favourite php framework?",
-                "published_at": "2014-11-11T08:40:51.620Z",
-                "url": "/questions/2",
-                "choices": [
-                    {
-                        "choice": "Nette",
-                        "url": "/questions/1/choices/1",
-                        "votes": 0
-                    }, {
-                        "choice": "Symfony 2",
-                        "url": "/questions/1/choices/2",
-                        "votes": 0
-                    }, {
-                        "choice": "Zend Framework",
-                        "url": "/questions/1/choices/3",
-                        "votes": 0
-                    }, {
-                        "choice": "CakePHP",
-                        "url": "/questions/1/choices/4",
-                        "votes": 0
-                    }
-                ]
+                "id": 1,
+                 "name": "RAJA",
+                "email": "pandurang@email.com",
+                "phone": "888888888"
+                "address": "RAJA",
+                "zipcode": "609001",
+                "city": "Chennai"
             }
+            
++ Response 401 (application/json)
+
+        {
+            "error": "error.unauthorized"
+        }
+
+### Update a address [POST]
+Update address details
++ Request (application/json)
+
+        {
+            "id": 1,
+            "fname": "Jayam",
+            "lname": "Senthamarai",
+            "email": "jayam@email.com"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "fname": "Jayam",
+            "lname": "Senthamarai",
+            "email": "jayam@email.com"
+        }
+
++ Response 401 (application/json)
+
+        {
+            "error": "error.unauthorized"
+        }
